@@ -54,13 +54,12 @@ export const removeFromCart = async (req, res) => {
 export const updateQuantity = async (req, res) => {
     try {
         const { id: productId } = req.params;
-        const { quantity, price } = req.body;
+        const { quantity } = req.body;
         const user = req.user;
         const existingItem = user.cartItems.find((item) => item.id === productId);
 
         if(existingItem) {
             existingItem.quantity = quantity;
-            existingItem.price = price;
             await user.save();
             res.json(user.cartItems);
         } else {
