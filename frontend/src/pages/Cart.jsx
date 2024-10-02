@@ -2,7 +2,7 @@ import React from 'react'
 import CartItem from '../components/CartItem'
 import { motion } from 'framer-motion'
 import { useSelector } from 'react-redux'
-import EmptyCartUI from '../components/EmptyCartUi'
+import EmptyCartUI from '../components/EmptyCartUI'
 import OrderSummary from '../components/OrderSummary'
 
 
