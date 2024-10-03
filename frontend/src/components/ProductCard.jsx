@@ -22,15 +22,16 @@ const ProductCard = ({ product }) => {
         }
     };
 
-    const handleAddToCart = async (e) => {
-        e.preventDefault();
+    const handleAddToCart = async (productId) => {
 		if (!user) {
 			toast.error("Please login to add products to cart", { id: "login" });
 			return;
 		} else {
             try {
-                const res = await axios.post('/cart', { productId : product._id});
-                toast.success(res.data.message);
+                const res = await axios.post('/cart', {productId} );
+				console.log(res);
+				
+                toast.success(res.data.message);	
             } catch (error) {
                 toast.error(error.response.data.message || "Failed to add into cart");
             }
@@ -53,7 +54,7 @@ const ProductCard = ({ product }) => {
 				<button
 					className='flex items-center justify-center rounded-lg bg-white px-5 py-2.5 text-center text-sm font-medium
 					 text-black hover:bg-[#a16bacc4] hover:text-white '
-					onClick={handleAddToCart}
+					onClick={() => handleAddToCart(product._id)}
 				>
 					<ShoppingCart size={22} className='mr-2 text-black ' />
 					Add to cart
